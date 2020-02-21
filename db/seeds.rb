@@ -1,7 +1,7 @@
 require "open-uri"
-require "JSON"
+require "json"
 
-url = open("https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").read
+url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
 content = JSON.parse(url)
 
 content["drinks"].each do |ingredient|
