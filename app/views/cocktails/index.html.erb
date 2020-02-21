@@ -1,28 +1,29 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+<div class="banner">
   <div class="container" data-aos="fade-right" data-aos-offset="300" data-aos-duration="1500" data-aos-delay="500">
-    <h1>Cocktails of LeWagon</h1>
-    <p>Change your life and learn to <em>cocktail</em> at one of our campuses around the world.</p>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-aos="fade-right" data-aos-offset="300" data-aos-duration="1500" data-aos-delay="1500">
-      Add your own cocktail
+    <h1>Cocktails of <span style="color:#372229">LeWagon</span></h1>
+    <p>Change your life and learn to <strong><em style="color:#372229">cocktail</em></strong> at one of our campuses around the world.</p>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal" data-aos="fade-right" data-aos-offset="300" data-aos-duration="1500" data-aos-delay="1500">
+      Add your own <i class="fas fa-cocktail"></i>
     </button>
   </div>
 </div>
 
-<div class="container">
-  <div class="row" data-aos="fade-right" data-aos-offset="200" data-aos-duration="1500" data-aos-delay="250">
-  <% @cocktails.each do |cocktail| %>
-  <div class="col-4" >
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title"><%= cocktail.name %></h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <%= link_to "Get the recipe", cocktail_path(cocktail)  %>
+<div class="banner-lower">
+  <div class="container">
+    <div class="row" data-aos="fade-right" data-aos-offset="200" data-aos-duration="1500" data-aos-delay="250">
+      <% @cocktails.each do |cocktail| %>
+      <div class="col-4" >
+          <%= cl_image_tag cocktail.photos.first.key, width: 400, height: 300, crop: :fill, class: "card-img-top" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= cocktail.name %></h5>
+            <%= link_to "Get the recipe", cocktail_path(cocktail)  %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
-  <% end %>
 
-  </div>
-</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -34,16 +35,13 @@
         </button>
       </div>
       <div class="modal-body">
-      <%= simple_form_for(@cocktail) do |f| %>
+         <%= simple_form_for(@cocktail) do |f| %>
         <%= f.input :name %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
         <%= f.submit class: "btn btn-primary" %>
-      <% end %>
       </div>
+      <% end %>
     </div>
   </div>
-</div>
 </div>
 

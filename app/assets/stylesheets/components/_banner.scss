@@ -1,21 +1,24 @@
 .banner {
   height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.2)), url("https://res.cloudinary.com/dyyo3sihs/image/upload/v1582296782/1204509_efoi9t.jpg");
   background-size: cover;
   background-position: center;
-  padding: 150px 0;
+  padding: 224px 0;
 }
 
 .banner h1 {
   margin: 0;
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
+  font-size: 48px;
   font-weight: bold;
 }
 
 .banner p {
-  font-size: 20px;
+  font-size: 16px;
+  padding-bottom: 24px;
   color: white;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
+
