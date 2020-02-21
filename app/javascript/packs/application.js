@@ -9,3 +9,16 @@ require("@rails/activestorage").start()
 require("channels")
 
 import 'bootstrap';
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+document.addEventListener('turbolinks:load', () => {
+  // const search = document.querySelector('.search')
+
+  // search.addEventListener('click', (event) => {
+  //   AOS.init();
+  // });
+  AOS.init();
+})
+

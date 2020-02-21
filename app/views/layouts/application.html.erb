@@ -9,10 +9,13 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
 
   <body>
     <%= render "shared/navbar" %>
     <%= yield %>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <%= render "shared/footer" %>
   </body>
 </html>
