@@ -1,24 +1,18 @@
 class CocktailsController < ApplicationController
   before_action :set_cocktail, only: [:show]
 
-  def index
+  def home
     @cocktails = Cocktail.all
     @cocktail = Cocktail.new
+    @dose = Dose.new
   end
-
-  def show
-  end
-
-  # def new
-  #   @cocktail = Cocktail.new
-  # end
 
   def create
     @cocktail = Cocktail.new(cocktail_params)
     if @cocktail.save
-      redirect_to cocktail_path(@cocktail)
+      redirect_to root_path
     else
-      render :new
+      redirect_to root_path
     end
   end
 

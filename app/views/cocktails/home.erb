@@ -1,0 +1,87 @@
+<div class="banner">
+  <div class="container" data-aos="fade-right" data-aos-offset="300" data-aos-duration="1500" data-aos-delay="500">
+    <h1>Cocktails of <span style="color:#372229">LeWagon</span></h1>
+    <p>Change your life and learn to <strong><em style="color:#372229">cocktail</em></strong> at one of our campuses around the world.</p>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addCocktail" data-aos="fade-right" data-aos-offset="300" data-aos-duration="1500" data-aos-delay="1500">
+      Add your own <i class="fas fa-cocktail"></i>
+    </button>
+  </div>
+</div>
+
+<div class="banner-lower">
+  <div class="container">
+    <div class="row" data-aos="fade-right" data-aos-offset="200" data-aos-duration="1500" data-aos-delay="250">
+      <% @cocktails.each do |cocktail| %>
+      <div class="col-md-4 col-sm-12">
+        <div class="cocktail-card shadow">
+          <div class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url('https://res.cloudinary.com/dyyo3sihs/image/upload/v1582723530/<%= cocktail.photos.first.key %>')">
+          </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= cocktail.name %></h5>
+            </div>
+                  <button type="button" class="btn btn-primary card-btn" data-toggle="modal" data-target="#exampleModalCenter<%= cocktail.id %>">
+              <h6>Get the recipe</h6>
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal to show cocktail-->
+        <div class="modal fade bd-example-modal-lg" id="exampleModalCenter<%= cocktail.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalCenterTitle"><%= cocktail.name %></h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <ul>
+                       <% cocktail.doses.each do |dose| %>
+                         <li><%= dose.description %> <%= dose.ingredient.name %>
+                           <a href='/doses/<%=dose.id%>' data-remote="true" data-method="delete"><i class="fas fa-times"></i></a>
+                         </li>
+                       <% end %>
+                    </ul>
+                    <h6>Add ingredients</h6>
+                    <%= simple_form_for [ cocktail, @dose ], remote: true, :html => {:"data-dismiss" => "static"} do |f| %>
+                      <%= f.input :description %>
+                      <%= f.association :ingredient %>
+                      <%= f.submit :html => {:"data-dismiss" => "static"}, class: "btn btn-primary" %>
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="modal-image" style="background-image: url('https://res.cloudinary.com/dyyo3sihs/image/upload/v1582723530/<%= cocktail.photos.first.key %>')">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for add new cocktail -->
+
+<div class="modal fade" id="addCocktail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+         <%= simple_form_for(@cocktail) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
