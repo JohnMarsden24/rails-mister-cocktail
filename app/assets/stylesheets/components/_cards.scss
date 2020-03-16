@@ -1,0 +1,43 @@
+.cocktail-card {
+  background-color: white;
+  border-radius: 16px;
+  margin: 15px 0 15px 0;
+  transition: 0.3s;
+  // padding: 15;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  h5 {
+    text-align: center;
+    color: black;
+    opacity: .7;
+    margin: 0;
+  }
+
+  h6 {
+    margin: 0;
+  }
+}
+
+.card-image {
+  height: 300px;
+  border-radius: 16px 16px 0 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.modal-image {
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.modal {
+  h2, h6, li, label {
+    color: black;
+    opacity: .7;
+  }
+}
+
